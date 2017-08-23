@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.asignore</groupId>
-    <artifactId>coffeeshop</artifactId>
+    <artifactId>wallet</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>coffeeshop</name>
+    <name>wallet</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -27,12 +27,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.asignore</groupId>
-            <artifactId>commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>

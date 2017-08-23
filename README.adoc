@@ -1,3 +1,5 @@
 = Scalable, event-driven coffee shop
 
 How to use event sourcing in several services with an event-driven architecture, Apache Kafka and Java EE.
+
+bin/kafka-server-start.sh  config/server.properties

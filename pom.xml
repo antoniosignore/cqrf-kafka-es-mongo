@@ -7,9 +7,12 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>commons</module>
         <module>barista</module>
-        <module>orders</module>
+        <module>coffeeshop</module>
         <module>beans</module>
+        <module>orders</module>
+        <module>wallet</module>
     </modules>
 
     <dependencyManagement>
