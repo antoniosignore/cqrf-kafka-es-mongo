@@ -34,7 +34,7 @@ public class OrderUpdateConsumer {
 
     @PostConstruct
     private void init() {
-        kafkaProperties.put("group.id", "order-consumer-" + UUID.randomUUID());
+        kafkaProperties.put("group.id", "bet-consumer-" + UUID.randomUUID());
         String orders = kafkaProperties.getProperty("orders.topic");
 
         eventConsumer = new EventConsumer(kafkaProperties, ev -> {

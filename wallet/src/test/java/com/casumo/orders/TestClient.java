@@ -1,8 +1,7 @@
 package com.casumo.orders;
 
-import com.casumo.orders.events.entity.CoffeeType;
-import com.casumo.orders.events.entity.OrderInfo;
-import com.casumo.orders.orders.boundary.Greeting;
+import com.casumo.bet.events.entity.BetInfo;
+import com.casumo.bet.events.entity.CoffeeType;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
@@ -54,9 +53,9 @@ public class TestClient {
 
     @Test
     public void postOrder() {
-        OrderInfo order = new OrderInfo();
+        BetInfo order = new BetInfo();
         order.setBeanOrigin("malta");
-        order.setOrderId(UUID.randomUUID());
+        order.setId(UUID.randomUUID());
         order.setType(CoffeeType.ESPRESSO);
         Response response = given().when()
                 .contentType(ContentType.JSON)
