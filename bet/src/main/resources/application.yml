@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+group:
+  offset: 1
+
+bootstrap:
+  servers: 127.0.0.1:9093
+
+topic:
+  bet : wallet
+  wallet : wallet
+  bmc : bmc
+
+# consumer
+enable:
+  auto:
+    commit: false
+auto:
+  offset:
+    reset: earliest
+
+key:
+  serializer: org.apache.kafka.common.serialization.StringSerializer
+  deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+value:
+  serializer: com.casumo.walletlet.control.EventSerializer
+  deserializer: com.casumo.walletlet.control.EventDeserializer
+
+# producer
+acks: all
+
+retries: 0
+
+linger:
+  ms: 0
+
+buffer:
+  memory: 33554432
+
