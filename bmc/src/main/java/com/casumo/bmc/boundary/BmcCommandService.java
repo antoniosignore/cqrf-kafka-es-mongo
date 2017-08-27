@@ -1,12 +1,11 @@
 package com.casumo.bmc.boundary;
 
-import com.casumo.wallet.events.entity.BetInfo;
-import com.casumo.wallet.events.entity.BetStarted;
-import com.casumo.wallet.events.entity.BmcBetDelivered;
-import com.casumo.wallet.events.entity.BmcBetFinished;
-import com.casumo.bmc.control.BmcRepository;
-
+import com.casumo.bet.events.entity.BetInfo;
+import com.casumo.bet.events.entity.BetStarted;
+import com.casumo.bet.events.entity.BmcBetDelivered;
+import com.casumo.bet.events.entity.BmcBetFinished;
 import com.casumo.bmc.control.BmcEventProducer;
+import com.casumo.bmc.repository.BmcRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,28 +28,36 @@ public class BmcCommandService {
         this.repo = repo;
     }
 
-    void makeCoffee(final BetInfo orderInfo) {
-        bmcEventProducer.publish(new BetStarted(orderInfo));
+    void makeCoffee(final BetInfo betInfo) {
+        BetStarted event = new BetStarted();
+        event.setBetInfo(betInfo);
+        bmcEventProducer.publish(event);
     }
 
     void checkBets() {
         final Collection<UUID> unfinishedBets = repo.getUnfinishedBets();
-        log.info("checking " + unfinishedBets.size() + " unfinished bets");
+        // log.info("checking " + unfinishedBets.size() + " unfinished bets");
 
         unfinishedBets.forEach(i -> {
-            if (new Random().nextBoolean())
-                bmcEventProducer.publish(new BmcBetFinished(i));
+            if (new Random().nextBoolean()) {
+                BmcBetFinished event = new BmcBetFinished();
+                event.setUuid(i);
+                bmcEventProducer.publish(event);
+            }
         });
     }
 
     void checkBetDelivery() {
 
         final Collection<UUID> undeliveredBets = repo.getUndeliveredBets();
-        log.info("checking " + undeliveredBets.size() + " un-served bets");
+        //log.info("checking " + undeliveredBets.size() + " un-served bets");
 
         undeliveredBets.forEach(i -> {
-            if (new Random().nextBoolean())
-                bmcEventProducer.publish(new BmcBetDelivered(i));
+            if (new Random().nextBoolean()) {
+                BmcBetDelivered event = new BmcBetDelivered();
+                event.setOrderId(i);
+                bmcEventProducer.publish(event);
+            }
         });
 
     }

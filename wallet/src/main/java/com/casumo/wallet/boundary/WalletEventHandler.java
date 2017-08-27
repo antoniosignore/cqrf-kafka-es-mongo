@@ -1,10 +1,10 @@
 package com.casumo.wallet.boundary;
 
+import com.casumo.bet.events.entity.BetPlaced;
+import com.casumo.bet.events.entity.BetStarted;
 import com.casumo.wallet.configuration.CommonProperties;
 import com.casumo.wallet.control.EventConsumer;
 import com.casumo.wallet.control.OffsetTracker;
-import com.casumo.wallet.events.entity.BetPlaced;
-import com.casumo.wallet.events.entity.BetStarted;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -25,7 +25,7 @@ public class WalletEventHandler {
 
     private final ApplicationEventPublisher publisher;
 
-    final CommonProperties commonProperties;
+    final CommonProperties conf;
 
     final OffsetTracker offsetTracker;
 
@@ -36,9 +36,9 @@ public class WalletEventHandler {
     final TaskExecutor executor;
 
     @Autowired
-    public WalletEventHandler(ApplicationEventPublisher publisher, CommonProperties commonProperties, OffsetTracker offsetTracker, WalletCommandService walletCommandService, TaskExecutor executor) {
+    public WalletEventHandler(ApplicationEventPublisher publisher, CommonProperties conf, OffsetTracker offsetTracker, WalletCommandService walletCommandService, TaskExecutor executor) {
         this.publisher = publisher;
-        this.commonProperties = commonProperties;
+        this.conf = conf;
         this.offsetTracker = offsetTracker;
         this.walletCommandService = walletCommandService;
         this.executor = executor;
@@ -46,7 +46,10 @@ public class WalletEventHandler {
 
     @Async
     @EventListener
-    public void handle(BetPlaced event) {
+    public void handleBetPlaced(BetPlaced event) {
+
+        System.out.println("WalletEventHandler.handleBetPlaced");
+
         walletCommandService.validateFunds(
                 event.getBetInfo().getUsername(),
                 event.getBetInfo().getId());
@@ -54,20 +57,25 @@ public class WalletEventHandler {
 
     @Async
     @EventListener
-    public void handle(BetStarted event) {
+    public void handleBetStarted(BetStarted event) {
+
+        System.out.println("WalletEventHandler.handleBetStarted");
+
         walletCommandService.withdrawnFunds(
                 event.getBetInfo().getUsername(),
-                event.getBetInfo().getAmount());
+                event.getBetInfo().getStake());
     }
 
     @PostConstruct
     private void initConsumer() {
-        Properties properties = commonProperties.properties();
+
+        Properties properties = conf.properties();
         properties.put("group.id", "wallets-handler");
-        eventConsumer = new EventConsumer(properties,
-                publisher::publishEvent, offsetTracker,
-                commonProperties.topicBmc,
-                commonProperties.topicWallet);
+
+        eventConsumer = new EventConsumer(properties, ev -> {
+            System.out.println("event received from BET or BMC. Firing =>  " + ev);
+            publisher.publishEvent(ev);
+        }, offsetTracker, "bmc", "bet");
 
         this.executor.execute(eventConsumer);
     }

@@ -35,8 +35,11 @@ public class BmcUpdateConsumer {
         Properties properties = commonProperties.properties();
         properties.put("group.id", "bmc-consumer-" + UUID.randomUUID());
 
-        eventConsumer = new EventConsumer(
-                properties, publisher::publishEvent, offsetTracker, commonProperties.topicBmc);
+        eventConsumer = new EventConsumer(properties, ev -> {
+            System.out.println("\n consuming BMC event. Firing  --> " + ev);
+            publisher.publishEvent(ev);
+        }, offsetTracker, "bmc");
+
         taskExecutor.execute(eventConsumer);
     }
 

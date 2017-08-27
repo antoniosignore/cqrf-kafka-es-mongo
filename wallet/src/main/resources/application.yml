@@ -5,12 +5,8 @@ group:
   offset: 1
 
 bootstrap:
-  servers: 127.0.0.1:9093
+  servers: 127.0.0.1:9092
 
-topic:
-  bet : wallet
-  wallet : wallet
-  bmc : bmc
 
 # consumer
 enable:

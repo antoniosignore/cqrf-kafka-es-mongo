@@ -3,7 +3,6 @@ package com.casumo.wallet.configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
@@ -16,15 +15,6 @@ public class CommonProperties {
 
     @Value("${bootstrap.servers}")
     public String bootstrapServer;
-
-    @Value("${topic.wallet}")
-    public String topicBet;
-
-    @Value("${topic.wallet}")
-    public String topicWallet;
-
-    @Value("${topic.bmc}")
-    public String topicBmc;
 
     @Value("${enable.auto.commit}")
     public Boolean enableAutoCommit;
@@ -65,9 +55,9 @@ public class CommonProperties {
         Properties properties = new Properties();
         properties.put("group-offset", groupOffset);
         properties.put("bootstrap.servers", bootstrapServer);
-        properties.put("topic.wallet", topicBet);
-        properties.put("topic.wallet", topicWallet);
-        properties.put("topic.bmc", topicBmc);
+        properties.put("topic.bet", "bet");
+        properties.put("topic.wallet", "wallet");
+        properties.put("topic.bmc", "bmc");
 
         properties.put("enable.auto.commit", enableAutoCommit);
         properties.put("auto.offset.reset", autoOffsetReset);

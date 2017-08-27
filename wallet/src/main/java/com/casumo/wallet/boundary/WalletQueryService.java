@@ -1,6 +1,6 @@
 package com.casumo.wallet.boundary;
 
-import com.casumo.wallet.control.WalletRepository;
+import com.casumo.wallet.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

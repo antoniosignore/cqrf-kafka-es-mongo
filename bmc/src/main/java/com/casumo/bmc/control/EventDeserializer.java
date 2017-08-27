@@ -1,6 +1,6 @@
 package com.casumo.bmc.control;
 
-import com.casumo.wallet.events.entity.AbstractEvent;
+import com.casumo.bet.events.entity.AbstractEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Deserializer;
 

@@ -5,7 +5,6 @@
     <jmxConfigurator/>
     <logger name="org.apache.kafka" level="ERROR"/>
     <logger name="org.springframework" level="INFO"/>
-    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG"/>
 
     <!--<property name="LOG_PATH" value="/var/log/thumbsup}"/>-->
 
@@ -38,5 +37,10 @@
     <!--<root level="DEBUG">-->
     <!--<appender-ref ref="stash"/>-->
     <!--</root>-->
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <!-- <appernder-ref ref="ROLLING" /> -->
+    </root>
 
 </configuration>

@@ -17,15 +17,6 @@ public class CommonProperties {
     @Value("${bootstrap.servers}")
     public String bootstrapServer;
 
-    @Value("${topic.wallet}")
-    public String topicBet;
-
-    @Value("${topic.wallet}")
-    public String topicWallet;
-
-    @Value("${topic.bmc}")
-    public String topicBmc;
-
     @Value("${enable.auto.commit}")
     public Boolean enableAutoCommit;
 
@@ -37,9 +28,6 @@ public class CommonProperties {
 
     @Value("${retries}")
     public Integer retries;
-
-    @Value("${batch.size}")
-    public Long batchSize;
 
     @Value("${linger.ms}")
     public Long lingerMs;
@@ -65,9 +53,10 @@ public class CommonProperties {
         Properties properties = new Properties();
         properties.put("group-offset", groupOffset);
         properties.put("bootstrap.servers", bootstrapServer);
-        properties.put("topic.wallet", topicBet);
-        properties.put("topic.wallet", topicWallet);
-        properties.put("topic.bmc", topicBmc);
+
+        properties.put("topic.bet", "bet");
+        properties.put("topic.wallet", "wallet");
+        properties.put("topic.bmc", "bmc");
 
         properties.put("enable.auto.commit", enableAutoCommit);
         properties.put("auto.offset.reset", autoOffsetReset);
@@ -80,7 +69,7 @@ public class CommonProperties {
 
         properties.put("acks", acks);
         properties.put("retries", retries);
-        properties.put("batch.size", batchSize);
+
         properties.put("linger.ms", lingerMs);
         properties.put("buffer.memory", bufferMemory);
 

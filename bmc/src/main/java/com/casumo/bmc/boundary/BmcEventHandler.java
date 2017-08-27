@@ -1,6 +1,6 @@
 package com.casumo.bmc.boundary;
 
-import com.casumo.wallet.events.entity.BetAccepted;
+import com.casumo.bet.events.entity.BetAccepted;
 import com.casumo.bmc.configuration.CommonProperties;
 import com.casumo.bmc.control.EventConsumer;
 import com.casumo.bmc.control.OffsetTracker;
@@ -18,8 +18,9 @@ import java.util.Properties;
 public class BmcEventHandler {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(BmcCommandService.class);
+
     private final ApplicationEventPublisher publisher;
-    final CommonProperties commonProperties;
+    final CommonProperties conf;
     final OffsetTracker offsetTracker;
     final BmcCommandService bmcCommandService;
     private EventConsumer eventConsumer;
@@ -27,29 +28,34 @@ public class BmcEventHandler {
 
     @Autowired
     public BmcEventHandler(ApplicationEventPublisher publisher,
-                           CommonProperties commonProperties,
+                           CommonProperties conf,
                            OffsetTracker offsetTracker,
                            BmcCommandService bmcCommandService,
                            TaskExecutor executor) {
         this.publisher = publisher;
-        this.commonProperties = commonProperties;
+        this.conf = conf;
         this.offsetTracker = offsetTracker;
         this.bmcCommandService = bmcCommandService;
         this.executor = executor;
     }
 
     @EventListener
-    public void handle(BetAccepted event) {
-    bmcCommandService.makeCoffee(event.getBetInfo());
+    public void handleBetAccepted(BetAccepted event) {
+
+        System.out.println("BmcEventHandler.handleBetAccepted");
+        System.out.println("event = " + event);
+
+        bmcCommandService.makeCoffee(event.getBetInfo());
     }
 
     @PostConstruct
     private void initConsumer() {
-        Properties properties = commonProperties.properties();
+        Properties properties = conf.properties();
         properties.put("group.id", "bmc-handler");
-        eventConsumer = new EventConsumer(properties,
-                publisher::publishEvent, offsetTracker,
-                commonProperties.topicBet);
+        eventConsumer = new EventConsumer(properties, ev -> {
+            System.out.println("\n consuming Bet event. Firing  --> " + ev);
+            publisher.publishEvent(ev);
+        }, offsetTracker, "bet");
 
         this.executor.execute(eventConsumer);
     }

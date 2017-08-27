@@ -5,12 +5,8 @@ group:
   offset: 1
 
 bootstrap:
-  servers: 127.0.0.1:9093
+  servers: 127.0.0.1:9092
 
-topic:
-  bet : wallet
-  wallet : wallet
-  bmc : bmc
 
 # consumer
 enable:
@@ -25,15 +21,14 @@ key:
   deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 value:
-  serializer: com.casumo.bmc.events.control.EventSerializer
-  deserializer: com.casumo.bmc.events.control.EventDeserializer
+  serializer: com.casumo.bmc.control.EventSerializer
+  deserializer: com.casumo.bmc.control.EventDeserializer
 
 # producer
 acks: all
 
 retries: 0
-batch:
-  size: 16384
+
 linger:
   ms: 0
 

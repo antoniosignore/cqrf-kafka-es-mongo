@@ -1,7 +1,6 @@
 package com.casumo.wallet.control;
 
 import com.casumo.wallet.configuration.CommonProperties;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -19,21 +18,20 @@ public class WalletUpdateConsumer {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(WalletUpdateConsumer.class);
 
-    private final ApplicationEventPublisher publisher;
+    final ApplicationEventPublisher publisher;
+
+    final CommonProperties commonProperties;
+
+    final OffsetTracker offsetTracker;
+    final TaskExecutor taskExecutor;
+    EventConsumer eventConsumer;
 
     @Autowired
-    CommonProperties commonProperties;
-
-    @Autowired
-    OffsetTracker offsetTracker;
-
-    private EventConsumer eventConsumer;
-
-    @Autowired
-    private TaskExecutor taskExecutor;
-
-    public WalletUpdateConsumer(ApplicationEventPublisher publisher) {
+    public WalletUpdateConsumer(ApplicationEventPublisher publisher, CommonProperties commonProperties, OffsetTracker offsetTracker, TaskExecutor taskExecutor) {
         this.publisher = publisher;
+        this.commonProperties = commonProperties;
+        this.offsetTracker = offsetTracker;
+        this.taskExecutor = taskExecutor;
     }
 
     @PostConstruct
@@ -42,8 +40,11 @@ public class WalletUpdateConsumer {
         Properties properties = commonProperties.properties();
         properties.put("group.id", "wallets-consumer-" + UUID.randomUUID());
 
-        eventConsumer = new EventConsumer(
-                properties, publisher::publishEvent, offsetTracker, commonProperties.topicWallet);
+        eventConsumer = new EventConsumer(properties, ev -> {
+            System.out.println("event received from WALLET. Firing =>  " + ev);
+            publisher.publishEvent(ev);
+        }, offsetTracker, "wallet");
+
         taskExecutor.execute(eventConsumer);
 
     }

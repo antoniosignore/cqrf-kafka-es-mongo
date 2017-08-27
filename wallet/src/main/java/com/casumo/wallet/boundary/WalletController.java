@@ -1,21 +1,19 @@
 package com.casumo.wallet.boundary;
 
-import com.casumo.wallet.events.entity.MoneyDeposit;
-import com.casumo.wallet.events.entity.MoneyWithdraw;
+import com.casumo.bet.events.entity.MoneyDeposit;
+import com.casumo.bet.events.entity.MoneyWithdraw;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
+import java.util.Map;
 
 @RestController
 public class WalletController {
@@ -31,22 +29,35 @@ public class WalletController {
         this.queryService = queryService;
     }
 
+    @RequestMapping(value = "/wallets", method = RequestMethod.GET)
+    public Map<String, Double> getBalances()
+            throws ChangeSetPersister.NotFoundException {
+        final Map<String, Double> balances = queryService.getBalances();
+        if (balances == null)
+            throw new ChangeSetPersister.NotFoundException();
+        return balances;
+    }
+
     @RequestMapping(value = "/wallets/{username}", method = RequestMethod.GET)
     public Double getBalance(@PathVariable("username") String username)
             throws ChangeSetPersister.NotFoundException {
-        final Double order = queryService.getBalances().get(username);
-        if (order == null)
+
+        addUserIfNotExists(username);
+
+        final Double balance = queryService.getBalances().get(username);
+
+        if (balance == null)
             throw new ChangeSetPersister.NotFoundException();
-        return order;
+        return balance;
     }
 
     @RequestMapping(value = "/wallets/deposit", method = RequestMethod.POST)
-    public ResponseEntity addFunds(MoneyDeposit deposit, HttpServletRequest request) {
-
-        log.debug("BetController.addFunds");
+    public ResponseEntity addFunds(@RequestBody MoneyDeposit deposit, HttpServletRequest request) {
 
         if (deposit == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        addUserIfNotExists(deposit.getUsername());
 
         commandService.addFunds(deposit.getUsername(), deposit.getAmount());
 
@@ -61,12 +72,12 @@ public class WalletController {
 
 
     @RequestMapping(value = "/wallets/withdraw", method = RequestMethod.POST)
-    public ResponseEntity withdrawFunds(MoneyWithdraw withdraw, HttpServletRequest request) {
-
-        log.debug("BetController.addFunds");
+    public ResponseEntity withdrawFunds(@RequestBody MoneyWithdraw withdraw, HttpServletRequest request) {
 
         if (withdraw == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        addUserIfNotExists(withdraw.getUsername());
 
         commandService.withdrawnFunds(withdraw.getUsername(), withdraw.getAmount());
 
@@ -77,6 +88,12 @@ public class WalletController {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(location);
         return new ResponseEntity(headers, HttpStatus.ACCEPTED);
+    }
+
+    private void addUserIfNotExists(String username) {
+        Map<String, Double> balances = queryService.getBalances();
+        if (balances.get(username) == null)
+            balances.put(username, 0D);
     }
 
 

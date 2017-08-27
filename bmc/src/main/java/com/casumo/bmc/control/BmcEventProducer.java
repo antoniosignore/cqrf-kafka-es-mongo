@@ -1,6 +1,6 @@
 package com.casumo.bmc.control;
 
-import com.casumo.wallet.events.entity.AbstractEvent;
+import com.casumo.bet.events.entity.AbstractEvent;
 import com.casumo.bmc.configuration.CommonProperties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -25,7 +25,7 @@ public class BmcEventProducer {
     @PostConstruct
     private void init() {
         producer = new KafkaProducer<>(commonProperties.properties());
-        topic = commonProperties.topicBmc;
+        topic = "bmc";
     }
 
     public void publish(AbstractEvent event) {

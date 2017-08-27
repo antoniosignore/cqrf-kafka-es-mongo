@@ -1,6 +1,6 @@
 package com.casumo.wallet.control;
 
-import com.casumo.wallet.events.entity.AbstractEvent;
+import com.casumo.bet.events.entity.AbstractEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -30,23 +30,16 @@ public class EventConsumer implements Runnable {
     public void run() {
         try {
             while (!closed.get()) {
-                consume();
+                ConsumerRecords<String, AbstractEvent> records = consumer.poll(Long.MAX_VALUE);
+                for (ConsumerRecord<String, AbstractEvent> record : records) {
+                    eventConsumer.accept(record.value());
+                    offsetTracker.trackOffset(record.topic(), record.partition(), record.offset() + 1);
+                }
             }
         } catch (WakeupException e) {
             // will wakeup for closing
         } finally {
             consumer.close();
-        }
-    }
-
-    private void consume() {
-
-        System.out.println("########### EventConsumer.consume");
-
-        ConsumerRecords<String, AbstractEvent> records = consumer.poll(Long.MAX_VALUE);
-        for (ConsumerRecord<String, AbstractEvent> record : records) {
-            eventConsumer.accept(record.value());
-            offsetTracker.trackOffset(record.topic(), record.partition(), record.offset() + 1);
         }
     }
 

@@ -1,7 +1,7 @@
 package com.casumo.wallet.control;
 
+import com.casumo.bet.events.entity.AbstractEvent;
 import com.casumo.wallet.configuration.CommonProperties;
-import com.casumo.wallet.events.entity.AbstractEvent;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -25,10 +25,12 @@ public class WalletEventProducer {
     @PostConstruct
     private void init() {
         producer = new KafkaProducer<>(commonProperties.properties());
-        topic = commonProperties.topicWallet;
+        topic = "wallet";
     }
 
     public void publish(AbstractEvent event) {
+        System.out.println("WalletEventProducer.publish");
+        System.out.println("PUBLISH event to WALLET= " + event);
         final ProducerRecord<String, AbstractEvent> record = new ProducerRecord<>(topic, event);
         producer.send(record);
         producer.flush();
