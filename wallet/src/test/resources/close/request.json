@@ -1,0 +1,11 @@
+{
+ "customerPlayerId" : "5240debe-b2f8-4030-9412-68a45fb7b8d8",
+ "kambiTransactionId" : "2f07ee40-6a41-4c7b-a2e2-ddf06a2046d3",
+ "kambiTransactionType" : "CLOSE_LOST_BET",
+ "productType":"SPORTSBOOK",
+"betInformation" : {
+"couponRef" : 383,
+"type":"SPORTSBOOK_COMBINATION",
+"combinationRefs" : [1234]
+ }
+}

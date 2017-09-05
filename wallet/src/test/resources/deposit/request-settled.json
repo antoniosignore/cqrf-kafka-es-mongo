@@ -1,0 +1,14 @@
+{
+  "customerPlayerId" : "3c9fef8d-60e7-4474-8803-c94e73314078",
+  "kambiTransactionId" : "88d80b4a-fabe-48ca-aa51-5a19e8356bae",
+  "kambiTransactionType" : "PAYOUT_SETTLED_BET_DEPOSIT",
+  "productType":"SPORTSBOOK",
+  "currencyCode" : "EUR",
+  "amount" : 10,
+  "betInformation" : {
+    "couponRef" : 383,
+    "type":"SPORTSBOOK_COMBINATION",
+    "combinationRefs" : [1234]
+    // The combination that was settled
+  }
+}
