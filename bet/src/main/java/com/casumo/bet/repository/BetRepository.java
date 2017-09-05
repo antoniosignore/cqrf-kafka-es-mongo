@@ -32,29 +32,29 @@ public class BetRepository {
     @EventListener
     public void apply(BetPlaced event) {
         log.debug("\n\n\n\n\n\nBET POSTED --> event : " + event.toString());
-        acceptedBets.putIfAbsent(event.getBetInfo().getId(), new Bet());
-        applyFor(event.getBetInfo().getId(), o -> o.place(event.getBetInfo()));
+        acceptedBets.putIfAbsent(event.getId(), new Bet());
+        applyFor(event.getId(), o -> o.place(event.getBetInfo()));
     }
 
     @Async
     @EventListener
     public void apply(BetCancelled event) {
         log.debug("--> event : " + event.toString());
-        applyFor(event.getOrderId(), Bet::cancel);
+        applyFor(event.getId(), Bet::cancel);
     }
 
     @Async
     @EventListener
     public void apply(BetAccepted event) {
         log.debug("--> event : " + event.toString());
-        applyFor(event.getBetInfo().getId(), Bet::accept);
+        applyFor(event.getId(), Bet::accept);
     }
 
     @Async
     @EventListener
     public void apply(BetStarted event) {
         log.debug("--> event : " + event.toString());
-        applyFor(event.getBetInfo().getId(), Bet::start);
+        applyFor(event.getId(), Bet::start);
     }
 
     @Async

@@ -1,8 +1,8 @@
 package com.casumo;
 
 
-import com.casumo.bet.events.entity.MoneyDeposit;
-import com.casumo.bet.events.entity.MoneyWithdraw;
+import com.casumo.bet.events.entity.wallet.MoneyDeposit;
+import com.casumo.bet.events.entity.wallet.MoneyWithdraw;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;

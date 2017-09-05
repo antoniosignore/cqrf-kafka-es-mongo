@@ -1,0 +1,20 @@
+{
+  "customerPlayerId" : "3c9fef8d-60e7-4474-8803-c94e73314078",
+  "kambiTransactionId" : "88d80b4a-fabe-48ca-aa51-5a19e8356bae",
+  "kambiTransactionType" : "PBA_CORRECTION_PARTIALLY_APPROVED_DEPOSIT",
+  "productType":"SPORTSBOOK",
+  "currencyCode" : "EUR",
+  "amount" : 3.00,
+  "betInformation": {
+    "couponRef" : 133,
+    "type" : "SPORTSBOOK_COUPON_STAKE_ODDS",
+    "channel" : "WEB",
+    "combinations" : [ {
+      "combinationRef" : 632,
+      "size" : 1,
+      "liveBetting" : true,
+      "odds" : 2.5032,
+      "stake" : 7.00
+    } ]
+  }
+}

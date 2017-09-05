@@ -1,26 +1,15 @@
 package com.casumo.bet.events.entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public final class BmcBetFinished extends AbstractEvent {
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public final class BmcBetFinished implements Serializable {
 
     private UUID uuid;
 
-    public BmcBetFinished() {
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    @Override
-    public String toString() {
-        return "BmcBetFinished{" +
-                "uuid=" + uuid +
-                '}';
-    }
 }

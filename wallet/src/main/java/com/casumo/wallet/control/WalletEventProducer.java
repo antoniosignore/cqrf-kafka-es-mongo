@@ -1,6 +1,5 @@
 package com.casumo.wallet.control;
 
-import com.casumo.bet.events.entity.AbstractEvent;
 import com.casumo.wallet.configuration.CommonProperties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;

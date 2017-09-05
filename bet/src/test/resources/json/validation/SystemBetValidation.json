@@ -1,0 +1,24 @@
+{
+  "responseCoupon": {
+    "status": 409,
+    "requestCoupon": {
+      "type": "RCT_SYSTEM",
+      "outcomeIds": [
+        [ 2098704980
+        ], [
+          2098704982 ]
+      ], "odds": [
+        1200,
+        6000 ],
+      "betsPattern": "111",
+      "allowOddsChange": "AOCT_NO"
+    },
+    "betErrors": [
+      {
+        "betIndex": 2,
+        "errors": [
+          {
+            "type": "VET_INVALID_BET"
+          } ]
+      } ]
+  } }

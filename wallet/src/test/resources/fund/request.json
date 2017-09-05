@@ -1,0 +1,23 @@
+{
+  "customerPlayerId" : "3c9fef8d-60e7-4474-8803-c94e73314078",
+  "kambiTransactionId" : "88d80b4a-fabe-48ca-aa51-5a19e8356bae",
+  "kambiTransactionType" : "STAKE_TRANSACTION_APPROVED_BET",
+  "productType":"SPORTSBOOK",
+  "currencyCode" : "EUR",
+  "amount" : 10.00,
+  "playerSessionToken" : "bdb14b77-0211-4007-b1f0-9fefd7070192",
+  "kambiRewardType" : null,
+  "rewardAmount" : null,
+  "betInformation": {
+    "couponRef" : 133,
+    "type" : "SPORTSBOOK_COUPON_STAKE_ODDS",
+    "channel" : "WEB",
+    "combinations" : [ {
+      "combinationRef" : 632,
+      "size" : 1,
+      "liveBetting" : true,
+      "odds" : 2.5032,
+      "stake" : 10.00
+    } ]
+  }
+}

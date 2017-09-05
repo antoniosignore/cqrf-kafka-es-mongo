@@ -16,6 +16,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-kafka.version>1.2.2.RELEASE</spring-kafka.version>
     </properties>
+
+    <dependencies>
+
+    </dependencies>
+
 
 </project>

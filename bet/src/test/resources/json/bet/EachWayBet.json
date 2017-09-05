@@ -1,0 +1,18 @@
+{
+  "requestCoupon": {
+    "type": "RCT_SINGLE",
+    "allowOddsChange": "AOCT_HIGHER",
+    "odds": [
+      5000 ],
+    "stakes": [
+      3000
+    ],
+    "outcomeIds": [
+      [ 2098664292
+      ] ],
+    "eachWayFraction": [
+      500
+    ],
+    "eachWayPlaceLimit": [
+      2 ]
+  } }

@@ -1,0 +1,42 @@
+{
+  "requestCoupon": {
+    "type": "RCT_SYSTEM",
+    "odds": [
+      1200,
+      6000 ],
+    "outcomeIds": [
+      [
+        2098704980
+      ],
+      [ 2098704982
+      ] ],
+    "betsPattern": "111"
+  },
+  "validRewardsRequest": {
+    "couponRows": [
+      {
+        "eventId": 1003067079,
+        "eventGroupIdPath": [
+          1000093190,
+          1000461753,
+          1000095127
+        ],
+        "live": true,
+        "odds": 1200,
+        "eventStartTime": 1503404189662,
+        "criterionId": 1001263164,
+        "outcomeId": 2098704980
+      }, {
+        "eventId": 1003067079,
+        "eventGroupIdPath": [
+          1000093190,
+          1000461753,
+          1000095127
+        ],
+        "live": true,
+        "odds": 6000,
+        "eventStartTime": 1503404189662,
+        "criterionId": 1001263164,
+        "outcomeId": 2098704982
+      } ]
+  } }

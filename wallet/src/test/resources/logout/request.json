@@ -1,0 +1,4 @@
+{
+ "tokens":[string, string, ...]
+ // Keys/tokens of player sessions that should be logged out.
+}

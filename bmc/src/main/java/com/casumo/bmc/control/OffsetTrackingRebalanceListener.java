@@ -1,6 +1,5 @@
 package com.casumo.bmc.control;
 
-import com.casumo.bet.events.entity.AbstractEvent;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.KafkaConsumer;

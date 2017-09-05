@@ -1,0 +1,57 @@
+{
+"customerPlayerId":string,
+ // Id identifying a player
+ "locale":string,
+ // The locale the user had when the bet was placed
+ "couponRef": number,
+ // Customer coupon identifier
+ "messageType": string,
+ // Delivery message type either "RECEIPT" or "RESULT"
+ "deliveryMethod": string,
+ // Delivery method of the message either "MAIL" or "SMS"
+ "placedDateTimestamp": number,
+ // Bet placed time in EPOCH timeformat
+ "sentForApproval": boolean, // Bet sent for approval value
+ "currencyCode": string, // Currency code. Example "EUR"
+ "couponRows": [
+ {
+ "couponRowRef":number, // Reference for the coupon row.
+ "playedOdds":decimal, // Odds
+ "status":string,
+ // status of the outcome, either OPEN, WON, LOST or VOID
+ "betDescription": {
+ "eventName":string,
+ // Event name in language (localized)
+ "betOfferDescription":[string],
+// Description (localized). Multiple strings to allow operator to
+join or split
+ "betLabel":string
+// Label (localized)
+ },
+ "result": {
+ "scratch": [string],
+// Participants that were scratched
+ "correct": [string],
+// The label(s) for the winning outcomes (if for place then the
+place is included in the label)
+ "score":string
+// Score used to settle the betoffer, if applicable.
+ }
+ }
+ ],
+ "combinations": [
+ {
+ "combinationRef":number,
+// Combination reference
+ "odds":decimal,
+// Odds
+ "stake":decimal,
+// Stake of the bet.
+ "status":string,
+// Combination status either: WON, LOST, OPEN or NEEDS_APPROVAL
+ "couponRowRefs": [
+// Couponr row ref(s) of the combination number
+ ]
+ }
+ ]
+}

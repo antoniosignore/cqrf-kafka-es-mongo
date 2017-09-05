@@ -3,6 +3,7 @@ package com.casumo.bet.boundary;
 
 import com.casumo.bet.control.BetEventProducer;
 import com.casumo.bet.events.entity.*;
+import com.casumo.bet.events.entity.player.BetInfo;
 import com.casumo.bet.repository.BetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,11 @@ public class BetCommandService {
         this.betRepository = betRepository;
     }
 
-    public void placeBet(final BetInfo betInfo) {
+    public void placeBet(final BetPlaced betPlaced) {
         System.out.println("BetCommandService.placeBet");
-        System.out.println("betInfo = " + betInfo);
+        System.out.println("betInfo = " + betPlaced);
         BetPlaced event = new BetPlaced();
-        event.setBetInfo(betInfo);
+        event.setBetInfo(betPlaced.getBetInfo());
         eventProducer.publish(event);
     }
 
@@ -45,7 +46,7 @@ public class BetCommandService {
     void cancelBet(final UUID id, final String reason) {
         System.out.println("BetCommandService.cancelBet");
         BetCancelled event = new BetCancelled();
-        event.setOrderId(id);
+        event.setId(id);
         event.setReason(reason);
         eventProducer.publish(event);
     }

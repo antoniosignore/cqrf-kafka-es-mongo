@@ -1,0 +1,12 @@
+{
+  "responseCoupon": {
+    "status": 200,
+    "requestCoupon": {
+      "type": "RCT_SINGLE",
+      "odds": [
+        3000 ],
+      "outcomeIds": [
+        [
+          2098693077 ]
+      ] }
+  } }

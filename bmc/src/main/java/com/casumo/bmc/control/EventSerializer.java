@@ -1,7 +1,6 @@
 package com.casumo.bmc.control;
 
 
-import com.casumo.bet.events.entity.AbstractEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Serializer;

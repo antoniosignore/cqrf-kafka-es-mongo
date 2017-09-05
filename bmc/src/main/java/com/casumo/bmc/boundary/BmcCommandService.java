@@ -1,6 +1,5 @@
 package com.casumo.bmc.boundary;
 
-import com.casumo.bet.events.entity.BetInfo;
 import com.casumo.bet.events.entity.BetStarted;
 import com.casumo.bet.events.entity.BmcBetDelivered;
 import com.casumo.bet.events.entity.BmcBetFinished;

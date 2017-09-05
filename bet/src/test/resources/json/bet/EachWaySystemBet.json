@@ -1,0 +1,30 @@
+{
+  "requestCoupon": {
+    "type": "RCT_SYSTEM",
+    "allowOddsChange": "AOCT_NO",
+    "odds": [
+      2000,
+      2000 ],
+    "stakes": [
+      2000,
+      2000,
+      1000 ],
+    "outcomeIds": [
+      [
+        2098704783
+      ],
+      [ 2098664289
+      ] ],
+    "betsPattern": "111",
+    "eachWay": [
+      true,
+      true,
+      false
+    ],
+    "eachWayFraction": [
+      340,
+      500 ],
+    "eachWayPlaceLimit": [
+      2,
+      2 ]
+  } }

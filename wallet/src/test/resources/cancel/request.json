@@ -1,0 +1,6 @@
+{
+  "customerPlayerId" : "0e783712-4993-498c-be7d-970d585f78f6",
+"kambiTransactionId" : "658ebfbb-b848-4222-80a2-a8a14238bbf8",
+"kambiTransactionType" : "CANCEL_UNFUNDED_COUPON",
+"transactionToCancel" : "70182715-e245-4792-98c9-4d372f82be7d"
+}

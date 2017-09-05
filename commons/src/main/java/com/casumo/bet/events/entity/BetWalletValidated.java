@@ -1,27 +1,15 @@
 package com.casumo.bet.events.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 import java.util.UUID;
 
-public final class BetWalletValidated extends AbstractEvent {
+@Data
+@NoArgsConstructor
+public final class BetWalletValidated implements Serializable {
 
     private UUID id;
-
-    public BetWalletValidated() {
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "BetWalletValidated{" +
-                "id=" + id +
-                '}';
-    }
-
-    public UUID getId() {
-        return id;
-    }
 
 }

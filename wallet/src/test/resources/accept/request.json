@@ -1,0 +1,18 @@
+{
+ "customerPlayerId" : "b4d9cfb7-0fdb-41ec-b93c-efa9764286d7",
+ "kambiTransactionId" : "ba9650c9-5f4c-4b74-95af-08bb53cebdd6",
+ "kambiTransactionType" : "ACCEPT_COUPON_NOTIFICATION",
+ "productType":"SPORTSBOOK",
+ "betInformation": {
+ "couponRef" : 133,
+ "type" : "SPORTSBOOK_COUPON_STAKE_ODDS",
+ "channel" : "WEB",
+ "combinations" : [ {
+ "combinationRef" : 632,
+ "size" : 1,
+ "liveBetting" : true,
+ "odds" : 2.1303,
+ "stake" : 10.00
+ } ]
+ }
+}

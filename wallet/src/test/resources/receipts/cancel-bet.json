@@ -1,0 +1,37 @@
+{
+  "type":string,
+  // Type of bet, currently the only valid values are either "PRE_MATCH" or
+  "LIVE_BETTING"
+  "locale":string,
+  // The locale the user had when the bet was placed
+  "currencyCode":string,
+  // Currency code. Example "EUR"
+  "customerPlayerId":string,
+  // Id identifying a player
+  "stake":decimal,
+  // Stake of cancelled bet. If multiple cancelled bets it represents the sum
+  of all stakes.
+  "odds":decimal,
+  // Odds
+  "betCount": number,
+  // Number of bets cancelled for this betoffer/outcome/price and player
+  "cancellationReason": {
+    // Contains key/value pairs relating to the cancellation reason
+    "key":string,
+    // Id identifying type of message. Can be used if you want to formulate
+    your own text or have different text for email and sms.
+    "description":string,
+    // Human readable description in English
+    "cancellationTimestamp":number
+    // Cancellation time (millisecond timestamp)
+  },
+  "betDescription": {
+    // Contains key/value pairs relating to the event
+    "eventName":string,
+    // Event name in language (localized)
+    "betLabel":string,
+    // Label (localized)
+    "betOfferDescription":[string]
+    // Bet offer description (localized)
+  }
+}

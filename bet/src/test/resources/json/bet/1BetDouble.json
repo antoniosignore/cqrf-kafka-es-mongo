@@ -1,0 +1,16 @@
+{
+  "requestCoupon": {
+    "type": "RCT_COMBINATION",
+    "allowOddsChange": "AOCT_ANY",
+    "odds": [
+      1200,
+      1400 ],
+    "stakes": [
+      2000
+    ],
+    "outcomeIds": [
+      [ 2098906769
+      ], [
+        2098906785 ]
+    ] }
+}
