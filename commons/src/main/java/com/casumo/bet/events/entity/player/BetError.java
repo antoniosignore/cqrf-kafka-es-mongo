@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class ValidRewardsRequest {
-    public List<CouponRow> couponRows = null;
+public class BetError {
+    public Long betIndex;
+    public List<Error> errors = null;
 }

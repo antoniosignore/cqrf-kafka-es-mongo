@@ -1,0 +1,81 @@
+{
+  "historyCoupon": {
+    "id": 1197586222,
+    "type": "HCT_FULL",
+    "stake": 100000,
+    "euroStake": 100000,
+    "placedDate": "2017-08-29T13:49:21Z",
+    "requestedStake": 100000,
+    "payout": 101000,
+    "currency": "XXX",
+    "odds": 1010,
+    "playedOdds": 1010,
+    "betsPattern": "1",
+    "channelId": 1,
+    "live": true,
+    "nrOfSettledBetOutcomes": 1,
+    "potentialPayout": 101000,
+    "systems": [
+      {
+        "systemType": "HST_NORMAL",
+        "betsPattern": "1",
+        "bets": [
+          {
+            "betId": 2795282390,
+            "betOdds": 1010,
+            "betStatus": 2,
+            "stake": 100000,
+            "euroStake": 100000,
+            "potentialPayout": 101000,
+            "payout": 101000
+          }
+        ],
+        "betOutcomes": [
+          {
+            "id": 2333825023,
+            "outcomeId": [
+              2333825023
+            ],
+            "betLabel": "1",
+            "eventName": "Viola, Matteo - Fournerie, Theo",
+            "betOfferId": 2093818620,
+            "boType": "Match",
+            "boTypeId": 2,
+            "criterion": "Match Odds",
+            "eventGroups": [
+              {
+                "name": "Tennis",
+                "id": 1000093193
+              },
+              {
+                "id": 2000054086
+              },
+              {
+                "name": "Switzerland",
+                "id": 2000057619
+              }
+            ],
+            "eventId": 1004183366,
+            "eventStartDate": "2017-08-29T13:03Z",
+            "line": 0,
+            "live": true,
+            "payoutOdds": 1010,
+            "playedOdds": 1010,
+            "status": 2,
+            "homeName": "Viola, Matteo",
+            "awayName": "Fournerie, Theo",
+            "result": {
+              "score": "2-0",
+              "correct": [
+                "1"
+              ]
+            },
+            "startingPrice": false,
+            "cashOutProhibited": false,
+            "bestOddsGuaranteed": false
+          }
+        ]
+      }
+    ]
+  }
+}
