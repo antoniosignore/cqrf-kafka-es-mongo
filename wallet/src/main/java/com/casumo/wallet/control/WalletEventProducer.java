@@ -1,38 +1,19 @@
 package com.casumo.wallet.control;
 
-import com.casumo.bet.events.entity.AbstractEvent;
-import com.casumo.wallet.configuration.CommonProperties;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import com.casumo.bet.configuration.CommonProperties;
+import com.casumo.bet.control.EventProducerFactoryMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 @Component
-public class WalletEventProducer {
-
-    private Producer<String, AbstractEvent> producer;
-    private String topic;
-    private final CommonProperties commonProperties;
+public class WalletEventProducer extends EventProducerFactoryMethod {
 
     @Autowired
-    public WalletEventProducer(CommonProperties commonProperties) {
-        this.commonProperties = commonProperties;
+    public WalletEventProducer(CommonProperties conf) {
+        super(conf);
     }
 
-    @PostConstruct
-    private void init() {
-        producer = new KafkaProducer<>(commonProperties.properties());
-        topic = "wallet";
-    }
-
-    public void publish(AbstractEvent event) {
-        System.out.println("WalletEventProducer.publish");
-        System.out.println("PUBLISH event to WALLET= " + event);
-        final ProducerRecord<String, AbstractEvent> record = new ProducerRecord<>(topic, event);
-        producer.send(record);
-        producer.flush();
+    public String getTopic() {
+        return "wallet";
     }
 }

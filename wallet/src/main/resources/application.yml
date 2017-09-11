@@ -21,8 +21,8 @@ key:
   deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 value:
-  serializer: com.casumo.wallet.control.EventSerializer
-  deserializer: com.casumo.wallet.control.EventDeserializer
+  serializer: com.casumo.bet.control.EventSerializer
+  deserializer: com.casumo.bet.control.EventDeserializer
 
 # producer
 acks: all

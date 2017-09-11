@@ -1,36 +1,19 @@
 package com.casumo.bmc.control;
 
-import com.casumo.bet.events.entity.AbstractEvent;
-import com.casumo.bmc.configuration.CommonProperties;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import com.casumo.bet.configuration.CommonProperties;
+import com.casumo.bet.control.EventProducerFactoryMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 @Component
-public class BmcEventProducer {
-
-    private Producer<String, AbstractEvent> producer;
-    private String topic;
-    private final CommonProperties commonProperties;
+public class BmcEventProducer extends EventProducerFactoryMethod {
 
     @Autowired
-    public BmcEventProducer(CommonProperties commonProperties) {
-        this.commonProperties = commonProperties;
+    public BmcEventProducer(CommonProperties conf) {
+        super(conf);
     }
 
-    @PostConstruct
-    private void init() {
-        producer = new KafkaProducer<>(commonProperties.properties());
-        topic = "bmc";
-    }
-
-    public void publish(AbstractEvent event) {
-        final ProducerRecord<String, AbstractEvent> record = new ProducerRecord<>(topic, event);
-        producer.send(record);
-        producer.flush();
+    public String getTopic() {
+        return "bmc";
     }
 }

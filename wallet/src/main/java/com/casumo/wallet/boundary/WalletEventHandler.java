@@ -1,10 +1,10 @@
 package com.casumo.wallet.boundary;
 
+import com.casumo.bet.configuration.CommonProperties;
+import com.casumo.bet.control.EventConsumer;
+import com.casumo.bet.control.OffsetTracker;
 import com.casumo.bet.events.entity.BetPlaced;
 import com.casumo.bet.events.entity.BetStarted;
-import com.casumo.wallet.configuration.CommonProperties;
-import com.casumo.wallet.control.EventConsumer;
-import com.casumo.wallet.control.OffsetTracker;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;

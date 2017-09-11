@@ -1,9 +1,9 @@
 package com.casumo.bmc.boundary;
 
+import com.casumo.bet.configuration.CommonProperties;
+import com.casumo.bet.control.EventConsumer;
+import com.casumo.bet.control.OffsetTracker;
 import com.casumo.bet.events.entity.BetAccepted;
-import com.casumo.bmc.configuration.CommonProperties;
-import com.casumo.bmc.control.EventConsumer;
-import com.casumo.bmc.control.OffsetTracker;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
