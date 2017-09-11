@@ -1,18 +1,24 @@
 package com.casumo.bet.events.entity;
 
-import com.casumo.bet.events.entity.player.BetInfo;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public final class BetAccepted extends AbstractEvent {
 
-import java.io.Serializable;
-import java.util.UUID;
-
-@Data
-@NoArgsConstructor
-public final class BetAccepted  implements Serializable {
-
-    private UUID id;
     private BetInfo betInfo;
 
+    public BetAccepted() {
+    }
 
+    public BetInfo getBetInfo() {
+        return betInfo;
+    }
+
+    public void setBetInfo(BetInfo betInfo) {
+        this.betInfo = betInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "BetAccepted{" +
+                "betInfo=" + betInfo +
+                '}';
+    }
 }

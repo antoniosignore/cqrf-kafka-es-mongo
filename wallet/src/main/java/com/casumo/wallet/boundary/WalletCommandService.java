@@ -2,8 +2,8 @@ package com.casumo.wallet.boundary;
 
 import com.casumo.bet.events.entity.BetRejectedFundsNotAvailable;
 import com.casumo.bet.events.entity.BetWalletValidated;
-import com.casumo.bet.events.entity.wallet.MoneyDeposit;
-import com.casumo.bet.events.entity.wallet.MoneyWithdraw;
+import com.casumo.bet.events.entity.MoneyDeposit;
+import com.casumo.bet.events.entity.MoneyWithdraw;
 import com.casumo.wallet.control.WalletEventProducer;
 import com.casumo.wallet.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;

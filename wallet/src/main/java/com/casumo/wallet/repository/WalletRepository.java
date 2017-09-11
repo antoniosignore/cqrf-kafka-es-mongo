@@ -1,7 +1,7 @@
 package com.casumo.wallet.repository;
 
-import com.casumo.bet.events.entity.wallet.MoneyDeposit;
-import com.casumo.bet.events.entity.wallet.MoneyWithdraw;
+import com.casumo.bet.events.entity.MoneyDeposit;
+import com.casumo.bet.events.entity.MoneyWithdraw;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
@@ -28,16 +28,18 @@ public class WalletRepository {
 
     @Async
     @EventListener
-    public void deposit(MoneyDeposit moneyDeposit) {
-        System.out.println("---> deposit : " + moneyDeposit.getAmount());
+    public void apply(MoneyDeposit moneyDeposit) {
+        System.out.println("deposit : " + moneyDeposit.getAmount());
         Double currentValue = balances.get(moneyDeposit.getUsername());
         balances.put(moneyDeposit.getUsername(), currentValue + moneyDeposit.getAmount());
     }
 
     @Async
     @EventListener
-    public void withdraw(MoneyWithdraw withdraw) {
-        System.out.println("---> withdraw : " + withdraw.getAmount());
+    public void apply(MoneyWithdraw withdraw) {
+
+        System.out.println("withdraw : " + withdraw.getAmount());
+
         Double currentValue = balances.get(withdraw.getUsername());
         balances.put(withdraw.getUsername(), currentValue - withdraw.getAmount());
     }

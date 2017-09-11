@@ -11,4 +11,4 @@ release.properties
 Dockerfile
 *.sh
 docker/
-.DS_Store
+kafka/

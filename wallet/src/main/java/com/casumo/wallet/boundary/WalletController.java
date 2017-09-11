@@ -1,7 +1,7 @@
 package com.casumo.wallet.boundary;
 
-import com.casumo.bet.events.entity.wallet.MoneyDeposit;
-import com.casumo.bet.events.entity.wallet.MoneyWithdraw;
+import com.casumo.bet.events.entity.MoneyDeposit;
+import com.casumo.bet.events.entity.MoneyWithdraw;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -20,8 +20,8 @@ public class WalletController {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(WalletController.class);
 
-    private WalletCommandService commandService;
-    private WalletQueryService queryService;
+    WalletCommandService commandService;
+    WalletQueryService queryService;
 
     @Autowired
     public WalletController(WalletCommandService commandService, WalletQueryService queryService) {

@@ -1,6 +1,6 @@
 package com.casumo.bet;
 
-import com.casumo.bet.events.entity.BetPlaced;
+import com.casumo.bet.events.entity.BetInfo;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
@@ -8,11 +8,9 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.BeforeClass;
-import org.junit.ClassRule;
 import org.junit.Test;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.kafka.test.rule.KafkaEmbedded;
 
 import java.util.UUID;
 
@@ -20,8 +18,6 @@ import static com.jayway.restassured.RestAssured.given;
 
 public class TestBet {
 
-    @ClassRule
-    public static KafkaEmbedded embeddedKafka = new KafkaEmbedded(1, true, "topic");
 
     @BeforeClass
     public static void setupURL() {
@@ -48,8 +44,10 @@ public class TestBet {
 
     @Test
     public void postBet() {
-        BetPlaced order = new BetPlaced();
+        BetInfo order = new BetInfo();
         order.setId(UUID.randomUUID());
+        order.setUsername("pippo");
+        order.setStake(500D);
 
         Response response = given().when()
                 .contentType(ContentType.JSON)

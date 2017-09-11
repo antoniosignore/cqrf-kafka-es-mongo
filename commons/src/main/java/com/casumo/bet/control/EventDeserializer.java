@@ -1,14 +1,14 @@
 package com.casumo.bet.control;
 
+import com.casumo.bet.events.entity.AbstractEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class EventDeserializer implements Deserializer<Serializable> {
+public class EventDeserializer implements Deserializer<AbstractEvent> {
 
     private static final Logger logger = Logger.getLogger(EventDeserializer.class.getName());
 
@@ -18,15 +18,15 @@ public class EventDeserializer implements Deserializer<Serializable> {
     }
 
     @Override
-    public Serializable deserialize(final String topic, final byte[] data) {
+    public AbstractEvent deserialize(final String topic, final byte[] data) {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.findAndRegisterModules();
 
         String jsonInString = new String(data);
-        Serializable event;
+        AbstractEvent event;
         try {
-            event = mapper.readValue(jsonInString, Serializable.class);
+            event = mapper.readValue(jsonInString, AbstractEvent.class);
             return event;
         } catch (IOException e) {
             e.printStackTrace();

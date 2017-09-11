@@ -1,17 +1,8 @@
 package com.casumo.bet.events.entity;
 
 
-import com.casumo.bet.events.entity.player.BetInfo;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.UUID;
-
-@Data
-@NoArgsConstructor
 public final class Bet {
 
-    private UUID id;
     private BetStatus state;
     private BetInfo betInfo;
 
