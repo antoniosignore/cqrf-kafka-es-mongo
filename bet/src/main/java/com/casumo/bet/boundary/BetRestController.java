@@ -1,7 +1,8 @@
 package com.casumo.bet.boundary;
 
 import com.casumo.bet.events.entity.Bet;
-import com.casumo.bet.events.entity.BetInfo;
+import com.casumo.bet.events.entity.BetPlaced;
+import com.casumo.bet.events.entity.player.BetInfo;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -44,7 +45,7 @@ public class BetRestController {
     }
 
     @RequestMapping(value = "/bets", method = RequestMethod.POST)
-    public ResponseEntity placeBet(@RequestBody BetInfo betInfo, HttpServletRequest request) {
+    public ResponseEntity placeBet(@RequestBody BetPlaced betInfo, HttpServletRequest request) {
 
         log.debug("BetController.placeBet");
 

@@ -1,11 +1,11 @@
 package com.casumo.bet.control;
 
-import com.casumo.bet.events.entity.AbstractEvent;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.WakeupException;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -15,12 +15,12 @@ import static java.util.Arrays.asList;
 
 public class EventConsumer implements Runnable {
 
-    private final KafkaConsumer<String, AbstractEvent> consumer;
+    private final KafkaConsumer<String, Serializable> consumer;
     private final OffsetTracker offsetTracker;
-    private final Consumer<AbstractEvent> eventConsumer;
+    private final Consumer<Serializable> eventConsumer;
     private final AtomicBoolean closed = new AtomicBoolean();
 
-    public EventConsumer(Properties kafkaProperties, Consumer<AbstractEvent> eventConsumer, OffsetTracker offsetTracker, String... topics) {
+    public EventConsumer(Properties kafkaProperties, Consumer<Serializable> eventConsumer, OffsetTracker offsetTracker, String... topics) {
 
         System.out.println("EventConsumer.EventConsumer");
         System.out.println("topics = " + topics);
@@ -53,8 +53,8 @@ public class EventConsumer implements Runnable {
 
         System.out.println("BET EventConsumer.consume");
 
-        ConsumerRecords<String, AbstractEvent> records = consumer.poll(Long.MAX_VALUE);
-        for (ConsumerRecord<String, AbstractEvent> record : records) {
+        ConsumerRecords<String, Serializable> records = consumer.poll(Long.MAX_VALUE);
+        for (ConsumerRecord<String, Serializable> record : records) {
             eventConsumer.accept(record.value());
             offsetTracker.trackOffset(record.topic(), record.partition(), record.offset() + 1);
         }

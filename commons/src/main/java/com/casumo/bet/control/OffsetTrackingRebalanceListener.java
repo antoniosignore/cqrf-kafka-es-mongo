@@ -1,19 +1,19 @@
 package com.casumo.bet.control;
 
-import com.casumo.bet.events.entity.AbstractEvent;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 public class OffsetTrackingRebalanceListener implements ConsumerRebalanceListener {
 
     private final OffsetTracker offsetTracker;
-    private final Consumer<String, AbstractEvent> consumer;
+    private final Consumer<String, Serializable> consumer;
 
-    public OffsetTrackingRebalanceListener(KafkaConsumer<String, AbstractEvent> consumer, OffsetTracker offsetTracker) {
+    public OffsetTrackingRebalanceListener(KafkaConsumer<String, Serializable> consumer, OffsetTracker offsetTracker) {
         this.consumer = consumer;
         this.offsetTracker = offsetTracker;
     }

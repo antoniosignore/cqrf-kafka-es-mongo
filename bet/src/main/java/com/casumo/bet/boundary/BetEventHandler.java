@@ -61,7 +61,7 @@ public class BetEventHandler {
     public void handleBmcBetStarted(BmcBetStarted event) {
         System.out.println("BetEventHandler.handleBmcBetStarted");
         System.out.println("event = " + event);
-        betCommandService.startBet(event.getBetInfo().getId());
+        betCommandService.startBet(event.getId());
     }
 
     @Async

@@ -1,14 +1,14 @@
 package com.casumo.bet.control;
 
 
-import com.casumo.bet.events.entity.AbstractEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Serializer;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class EventSerializer implements Serializer<AbstractEvent> {
+public class EventSerializer implements Serializer<Serializable> {
 
     @Override
     public void configure(final Map<String, ?> configs, final boolean isKey) {
@@ -16,7 +16,7 @@ public class EventSerializer implements Serializer<AbstractEvent> {
     }
 
     @Override
-    public byte[] serialize(final String topic, final AbstractEvent event) {
+    public byte[] serialize(final String topic, final Serializable event) {
         if (event == null)
             return null;
 

@@ -1,27 +1,15 @@
 package com.casumo.bet.events.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 import java.util.UUID;
 
-public class BetRejectedFundsNotAvailable extends AbstractEvent {
+@Data
+@NoArgsConstructor
+public class BetRejectedFundsNotAvailable implements Serializable {
 
     private UUID id;
-
-    public BetRejectedFundsNotAvailable() {
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "BetRejectedFundsNotAvailable{" +
-                "id=" + id +
-                '}';
-    }
-
-    public UUID getId() {
-        return id;
-    }
 
 }
